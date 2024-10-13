@@ -1,0 +1,13 @@
+tarfile
+os
+Pillow
+torch
+torchvision
+numpy
+matplotlib
+Pillow
+scikit-learn
+opencv-python
+supervision
+wget
+pickleshare
