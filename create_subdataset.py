@@ -2,7 +2,6 @@ import tarfile
 import os
 from PIL import Image
 
-
 # Function to extract images from a tar.gz file
 # Creates a subdataset for training, validation, and testing
 # Saved in a folder named "extracted_images"
@@ -24,26 +23,42 @@ def extract_images(tar_path, output_dir, train_val_list_path, test_list_path, nu
             
             if img_name in test_list and test_count < num_test:
                 subset = 'test'
+                subset_dir = os.path.join(output_dir, subset)
+                img_path = os.path.join(subset_dir, img_name)
+                
+                if os.path.exists(img_path):
+                    print(f"{img_name} already exists in {subset_dir}. Skipping.")
+                    continue
+
                 test_count += 1
             elif img_name in train_val_list:
                 if train_count < num_train:
                     subset = 'train'
-                    train_count += 1
                 elif val_count < num_val:
                     subset = 'val'
-                    val_count += 1
                 else:
                     continue
+
+                subset_dir = os.path.join(output_dir, subset)
+                img_path = os.path.join(subset_dir, img_name)
+
+                if os.path.exists(img_path):
+                    print(f"{img_name} already exists in {subset_dir}. Skipping.")
+                    continue
+
+                if subset == 'train':
+                    train_count += 1
+                elif subset == 'val':
+                    val_count += 1
             else:
                 continue
             
-            subset_dir = os.path.join(output_dir, subset)
             os.makedirs(subset_dir, exist_ok=True)
             
             img_file = tar.extractfile(member)
             if img_file:
                 with Image.open(img_file) as img:
-                    img.save(os.path.join(subset_dir, img_name))
+                    img.save(img_path)
             
             if train_count == num_train and val_count == num_val and test_count == num_test:
                 break
