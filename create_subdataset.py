@@ -66,6 +66,6 @@ def extract_images(tar_path, output_dir, train_val_list_path, test_list_path, nu
 # Extracting images from the tar.gz file
 tar_path = 'images_004.tar.gz'
 output_dir = 'extracted_images'
-train_val_list_path = 'train_val-list.txt'
+train_val_list_path = 'train_val_list.txt'
 test_list_path = 'test_list.txt'
-extract_images(tar_path, output_dir, train_val_list_path, test_list_path, num_train=10, num_val=10, num_test=5)
+extract_images(tar_path, output_dir, train_val_list_path, test_list_path, num_train=120, num_val=40, num_test=40)
