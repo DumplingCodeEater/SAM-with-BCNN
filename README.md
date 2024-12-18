@@ -26,4 +26,3 @@ Run the cells in the `SAM2_with_BCNN_Local.ipynb` notebook in order on your loca
 
 ## Presentation and Paper
  - [Presentation of this code's purpose and potential implementations](https://youtu.be/DYssfQb-crA)
- - Paper can be found in the `Integrating_SAM2_with_Bayesian_Convolutional_Neural_Networks.pdf`
